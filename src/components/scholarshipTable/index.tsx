@@ -20,8 +20,7 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       dataIndex: ['university', 'logo_url'],
       align: 'center' as const,
       key: 'logo',
-      width: 50,
-      maxWidth: 50,
+      width: '10%',
       render: (logo: string) => {
         return <img src={logo} style={{'width': '100%'}} />
       },
@@ -31,12 +30,16 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       dataIndex: ['course', 'name'],
       align: 'center' as const,
       key: 'name',
+      width: '10%',
+      sorter: (a, b) => a.course.name.localeCompare(b.course.name),
+      defaultSortOrder: 'ascend' as const,
     },
     {
       title: 'Cidade',
       dataIndex: ['campus', 'city'],
       align: 'center' as const,
       key: 'city',
+
     },
   ];
 
