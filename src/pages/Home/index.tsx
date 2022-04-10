@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
+import ScholarshipsTable from '../../components/scholarshipTable';
 import { getAllScholarships, IScholarshipsResponse } from '../../providers/api';
 
 const Home: React.FC = () => {
@@ -28,7 +29,7 @@ const Home: React.FC = () => {
   console.log(allScholarships);
 
   return (
-    <h1>olá!</h1>
+    <ScholarshipsTable tableTitle='Tabela de Escolas' scholarshipData={allScholarships} />
   );
 };
 

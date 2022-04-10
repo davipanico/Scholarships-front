@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import NavigationRoutes from './pages';
+import MainPage from './pages';
+import GlobalStyles from './styles/GlobalStyles';
 
 const App = (): JSX.Element => (
   <div>
-    <NavigationRoutes />
+    <MainPage />
+    <GlobalStyles />
   </div>
 
 );

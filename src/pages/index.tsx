@@ -2,13 +2,11 @@
 import React from 'react';
 import Home from './Home';
 
-const NavigationRoutes: React.FC = () => {
-  const teste = 'teste';
+const MainPage: React.FC = () => {
   return (
     <>
       <Home />
-      <h1>{teste}</h1>
     </>
   );
 };
-export default NavigationRoutes;
+export default MainPage;
