@@ -22,7 +22,5 @@
   },
   "include": [
     "src",
-    ".eslintrc.js",
-    "src/**/*.d.ts"
   ]
 }
