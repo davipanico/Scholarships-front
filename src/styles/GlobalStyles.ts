@@ -1,11 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import 'antd/dist/antd.css';
 
 export default createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
     *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Roboto',sans-serif;
     }
 
     html {
@@ -21,6 +24,12 @@ export default createGlobalStyle`
         list-style: none;
     }
 
+    .ant-image-img {
+        max-height: 150px;
+        border: 1px solid blue;
+        border-radius: 5px;
+    }
+
     .ant-btn-primary {
         background-color: #f58220 !important;
         border-color: #f58220 !important;
@@ -29,6 +38,19 @@ export default createGlobalStyle`
     .rc-virtual-list-scrollbar {
         display: block !important;
     }
+
+    .ant-typography {
+        color: #555;
+       
+      }
+
+      h5.ant-typography {
+        color: #18ACC4;
+      }
+
+      h2.ant-typography {
+        color: #18ACC4;
+      }
 
     :root {
     --primary: #f58220;

@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-filename-extension */
-import { Col, Form, Row } from 'antd';
-import { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+import {Col, Form, Row} from 'antd';
+import {AxiosError} from 'axios';
+import React, {useEffect, useState} from 'react';
 import ScholarshipsTable from '../../components/scholarshipTable';
-import { getAllScholarships, IScholarshipsResponse } from '../../providers/api';
+import {getAllScholarships, IScholarshipsResponse} from '../../providers/api';
 
 const Home: React.FC = () => {
   const [form] = Form.useForm();
-  const [allScholarships, setAllScholarships] = useState<IScholarshipsResponse[]>([]);
-  const [filteredScholarships, setAllfilteredScholarships] = useState<IScholarshipsResponse[]>([]);
+  const [allScholarships, setAllScholarships] = useState<
+    IScholarshipsResponse[]
+  >([]);
 
   const fillScholarships = async () => {
     try {
@@ -29,23 +30,24 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  const onFilter = () => {
-
-  }
+  const onFilter = () => {};
 
   return (
     <>
-    <Form 
-      form={form}
-      layout="horizontal"
-      name="filter_scholarships"
-      onFinish={onFilter}>
+      <Form
+        form={form}
+        layout="horizontal"
+        name="filter_scholarships"
+        onFinish={onFilter}
+      >
         <Row>
-          <Col style={{ paddingRight: '60px' }}>
-          </Col>
-        </Row>    
-    </Form>
-    <ScholarshipsTable tableTitle='Tabela de Escolas' scholarshipData={allScholarships} />
+          <Col style={{paddingRight: '60px'}}></Col>
+        </Row>
+      </Form>
+      <ScholarshipsTable
+        tableTitle="Tabela de Escolas"
+        scholarshipData={allScholarships}
+      />
     </>
   );
 };

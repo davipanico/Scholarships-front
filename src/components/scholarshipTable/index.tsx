@@ -1,12 +1,12 @@
-import React, { useCallback, useRef } from 'react';
-import { Table, Button, Divider, Typography, Row } from 'antd';
+import React, {useCallback, useRef} from 'react';
+import {Table, Button, Typography, Row, Image} from 'antd';
 import Container from './styles';
-import { IScholarshipsResponse } from '../../providers/api';
-import ScholarshipDetails, { IScholarshipHandles } from '../scholarsipDetails';
+import {IScholarshipsResponse} from '../../providers/api';
+import ScholarshipDetails, {IScholarshipHandles} from '../scholarsipDetails';
 interface IScholarshipsTable {
-  tableTitle: string,
-  scholarshipData: IScholarshipsResponse[]
-  containerStyle?: React.CSSProperties,
+  tableTitle: string;
+  scholarshipData: IScholarshipsResponse[];
+  containerStyle?: React.CSSProperties;
 }
 
 const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
@@ -23,7 +23,6 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
     }
   }, []);
 
-
   const columns = [
     {
       title: 'Logo',
@@ -32,7 +31,7 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       key: 'logo',
       width: '10%',
       render: (logo: string) => {
-        return <img src={logo} style={{'width': '100%'}} />
+        return <Image src={logo} style={{width: '100%'}} />;
       },
     },
     {
@@ -57,31 +56,40 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       align: 'center' as const,
       key: 'fullPrice',
       width: '10%',
-      render: (full_price) => {
-        return `R$ ${full_price}`
-      }
+      render: (full_price: number) => {
+        return `R$ ${full_price}`;
+      },
     },
     {
       align: 'left' as const,
       key: 'details',
       width: '10%',
       render: (data: IScholarshipsResponse) => {
-        return <Button onClick={() => handleDetailsModal(data)} style={{ cursor: 'pointer' }}> 
-          Detalhes 
-        </Button>
-      }
+        return (
+          <Button
+            onClick={() => handleDetailsModal(data)}
+            style={{cursor: 'pointer'}}
+          >
+            Detalhes
+          </Button>
+        );
+      },
     },
   ];
 
   return (
     <>
-    <Row justify="space-around" align="middle" style={{textAlign: 'center'}}>
-      <Typography.Title level={2}>{tableTitle}</Typography.Title>
-    </Row>
-    <Container style={containerStyle}>
-      <Table columns={columns} dataSource={scholarshipData}/>
-    </Container>
-    <ScholarshipDetails ref={scholarshipModalRef}/>
+      <Row
+        justify="space-around"
+        align="middle"
+        style={{textAlign: 'center'}}
+      >
+        <Typography.Title level={2}>{tableTitle}</Typography.Title>
+      </Row>
+      <Container style={containerStyle}>
+        <Table columns={columns} dataSource={scholarshipData} />
+      </Container>
+      <ScholarshipDetails ref={scholarshipModalRef} />
     </>
   );
 };
