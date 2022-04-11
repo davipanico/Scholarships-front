@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-filename-extension */
+import { AutoComplete, Col, Divider, Form, Input, Row, Select, Typography } from 'antd';
 import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import ScholarshipsTable from '../../components/scholarshipTable';
 import { getAllScholarships, IScholarshipsResponse } from '../../providers/api';
 
 const Home: React.FC = () => {
+  const [form] = Form.useForm();
   const [allScholarships, setAllScholarships] = useState<IScholarshipsResponse[]>([]);
+  const [filteredScholarships, setAllfilteredScholarships] = useState<IScholarshipsResponse[]>([]);
 
   const fillScholarships = async () => {
     try {
@@ -26,10 +29,25 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  console.log(allScholarships);
+  const onFilter = () => {
+
+  }
 
   return (
+    <>
+    <Form 
+      form={form}
+      layout="horizontal"
+      name="filter_scholarships"
+      onFinish={onFilter}>
+        <Row>
+          <Col style={{ paddingRight: '60px' }}>
+          </Col>
+        </Row>    
+    </Form>
+    <Divider />
     <ScholarshipsTable tableTitle='Tabela de Escolas' scholarshipData={allScholarships} />
+    </>
   );
 };
 

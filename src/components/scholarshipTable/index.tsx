@@ -1,8 +1,8 @@
-import React from 'react';
-import { Table } from 'antd';
+import React, { useCallback, useRef } from 'react';
+import { Table, Button, Divider } from 'antd';
 import Container from './styles';
 import { IScholarshipsResponse } from '../../providers/api';
-
+import ScholarshipDetails, { IScholarshipHandles } from '../scholarsipDetails';
 interface IScholarshipsTable {
   tableTitle: string,
   scholarshipData: IScholarshipsResponse[]
@@ -14,6 +14,16 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
   scholarshipData,
   containerStyle,
 }: IScholarshipsTable) => {
+  const scholarshipModalRef = useRef<IScholarshipHandles>(null);
+
+  const handleDetailsModal = useCallback((data) => {
+    if (scholarshipModalRef.current) {
+      scholarshipModalRef.current.dataModal(data);
+      scholarshipModalRef.current.openModal();
+    }
+  }, []);
+
+
   const columns = [
     {
       title: 'Logo',
@@ -38,14 +48,35 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       title: 'Cidade',
       dataIndex: ['campus', 'city'],
       align: 'center' as const,
+      width: '10%',
       key: 'city',
-
+    },
+    {
+      title: 'Preço',
+      dataIndex: 'full_price',
+      align: 'center' as const,
+      key: 'fullPrice',
+      width: '10%',
+      render: (full_price) => {
+        return `R$ ${full_price}`
+      }
+    },
+    {
+      align: 'left' as const,
+      key: 'details',
+      width: '10%',
+      render: (data: IScholarshipsResponse) => {
+        return <Button onClick={() => handleDetailsModal(data)} style={{ cursor: 'pointer' }}> 
+          Detalhes 
+        </Button>
+      }
     },
   ];
 
   return (
     <>
     <h1>{tableTitle}</h1>
+    <Divider/>
     <div style={{
         overflowX: 'auto',
         width: '100%',
@@ -55,6 +86,7 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       <Table columns={columns} dataSource={scholarshipData}/>
     </Container>
     </div>
+    <ScholarshipDetails ref={scholarshipModalRef} />
     </>
   );
 };
