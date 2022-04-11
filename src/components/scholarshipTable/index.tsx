@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Table, Button, Divider } from 'antd';
+import { Table, Button, Divider, Typography, Row } from 'antd';
 import Container from './styles';
 import { IScholarshipsResponse } from '../../providers/api';
 import ScholarshipDetails, { IScholarshipHandles } from '../scholarsipDetails';
@@ -75,18 +75,13 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
 
   return (
     <>
-    <h1>{tableTitle}</h1>
-    <Divider/>
-    <div style={{
-        overflowX: 'auto',
-        width: '100%',
-      }}
-      >
+    <Row justify="space-around" align="middle" style={{textAlign: 'center'}}>
+      <Typography.Title level={2}>{tableTitle}</Typography.Title>
+    </Row>
     <Container style={containerStyle}>
       <Table columns={columns} dataSource={scholarshipData}/>
     </Container>
-    </div>
-    <ScholarshipDetails ref={scholarshipModalRef} />
+    <ScholarshipDetails ref={scholarshipModalRef}/>
     </>
   );
 };

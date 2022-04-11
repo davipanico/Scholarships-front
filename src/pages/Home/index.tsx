@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import { AutoComplete, Col, Divider, Form, Input, Row, Select, Typography } from 'antd';
+import { Col, Form, Row } from 'antd';
 import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import ScholarshipsTable from '../../components/scholarshipTable';
@@ -45,7 +45,6 @@ const Home: React.FC = () => {
           </Col>
         </Row>    
     </Form>
-    <Divider />
     <ScholarshipsTable tableTitle='Tabela de Escolas' scholarshipData={allScholarships} />
     </>
   );
