@@ -1,4 +1,4 @@
-# Scholharship api reader.
+# Scholarships api reader.
 
 <p align="center">
  <a href="#objective">Objective</a> • 
