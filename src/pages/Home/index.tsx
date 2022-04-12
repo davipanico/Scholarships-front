@@ -8,7 +8,7 @@ import {getAllScholarships, IScholarshipsResponse} from '../../providers/api';
 const Home: React.FC = () => {
   const [form] = Form.useForm();
   const [allScholarships, setAllScholarships] = useState<IScholarshipsResponse[]>([]);
-  const [filteredScholarships, setAllFilteredScholarships] = useState<IScholarshipsResponse[]>([])
+  const [filteredScholarships, setFilteredScholarships] = useState<IScholarshipsResponse[]>([])
 
   const fillScholarships = async () => {
     try {
@@ -32,10 +32,30 @@ const Home: React.FC = () => {
   const handleSubmit = (values) => {
     const {city, course, price} = values;
     
-    if (values) {
+    const filteredByCity = allScholarships.filter((school) => school.campus.city.toLowerCase().includes(city.toLowerCase()));
 
+    if (course) {
+      const filteredByCourse = filteredByCity.filter((school) => school.course.name.toLowerCase().includes(course.toLowerCase()));
+      if (price) {
+        const filteredByCourseAndPrice = filteredByCourse.filter((school) => school.full_price <= price);
+        return setFilteredScholarships(filteredByCourseAndPrice);
+      }
+      return setFilteredScholarships(filteredByCourse);
+    } else if (price) {
+      const filteredByPrice = filteredByCity.filter((school) => school.full_price <= price);
+      if (course) {
+        const filteredByPriceAndCourse = filteredByPrice.filter((school) => school.course.name.toLowerCase().includes(course.toLowerCase()));
+        return setFilteredScholarships(filteredByPriceAndCourse)
+      }
+      return setFilteredScholarships(filteredByPrice);
     }
+
+    return setFilteredScholarships(filteredByCity);
   };
+
+  const handleClear = () => {
+    setFilteredScholarships([]);
+  }
 
   return (
     <>
@@ -45,7 +65,10 @@ const Home: React.FC = () => {
         name="filter_scholarships"
         onFinish={handleSubmit}
       >
-        <Row style={{ marginTop: '10px'}}>
+        <Row 
+            justify="center"
+            style={{textAlign: 'center', marginTop: '10px'}}
+        >
           <Col style={{ paddingRight: '25px', width: '300px'}}>
             <Form.Item name='city'  
             rules={[{
@@ -65,14 +88,21 @@ const Home: React.FC = () => {
               <Input type={'number'} placeholder='Preço'></Input>
             </Form.Item>           
           </Col>
-          <Button style={{ paddingRight: '25px' }} onClick={form.submit}>
-            Buscar
-          </Button>
+          <Col style={{ paddingRight: '25px' }}>
+            <Button  onClick={form.submit}>
+              Buscar
+            </Button>
+          </Col>
+          <Col style={{ paddingRight: '25px' }}>
+            <Button style={{ paddingRight: '25px' }} onClick={handleClear}>
+              Resetar
+            </Button>
+          </Col>        
         </Row>
       </Form>
       <ScholarshipsTable
         tableTitle="Tabela de Escolas"
-        scholarshipData={allScholarships}
+        scholarshipData={filteredScholarships.length > 0 ? filteredScholarships : allScholarships}
       />
     </>
   );
