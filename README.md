@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Scholharship api reader.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+ <a href="#objective">Objective</a> • 
+ <a href="#tecnology">Tecnology</a> • 
+ <a href="#how to use">How to Use</a> • 
+</p>
 
-## Available Scripts
+# Objective
 
-In the project directory, you can run:
+This project has the objective of collect data from a api and transform into a table, showing informations like course name, price, location and a modal to see further details.
 
-### `npm start`
+# Tecnology
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React.JS 
+- Axios
+- TypeScript
+- antd/styled-components (for design)
+- eslint (to ensure code syntax)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Before use this app, you need to have node version 16.7.0 installed on your computer, after installing you're good to go!
 
-### `npm test`
+# How to use
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First you need to clone this repo
+ - https://github.com/davipanico/Scholarships-front
 
-### `npm run build`
+Install dependecies
+ - npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Configure you env
+ - You will see a file named .env-example, just made a copy of this file and rename him to .env, at REACT_APP_APIROUTE= put the api URL.
+ - set "https://testapi.io/api/Jonas-buriti"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Then start the app
+ - npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Possibly errors
+- If scholarshipDetails.tsx inform that <Modal> doenst have a children prop you need to go ~user\scholarships-front\node_modules\antd\lib\modal\Modal.d.ts and add children: React.ReactNode at ModalProps. This erro occurs because of bug on antd package with typeScript.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Or just acess https://react-heroku-scholarship.herokuapp.com/
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Thank you!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
