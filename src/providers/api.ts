@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import axios from './apiConfig';
+import queryString from 'query-string';
 
 export interface IScholarshipsResponse {
     full_price?: number,
@@ -31,6 +32,15 @@ interface IAxiosGetAllScholarships {
 
 export const getAllScholarships = async (): Promise<IAxiosGetAllScholarships> => {
   const axiosResponse = await axios().get('/scholarships');
+  const scholarshipsData: IScholarshipsResponse[] = axiosResponse.data;
+  return {
+    data: scholarshipsData,
+  };
+};
+
+export const getFilteredScholarships = async (city, course, price): Promise<IAxiosGetAllScholarships> => {
+  const params = queryString.stringify({city: city});
+  const axiosResponse = await axios().get(`/scholarships/${params}`);
   const scholarshipsData: IScholarshipsResponse[] = axiosResponse.data;
   return {
     data: scholarshipsData,

@@ -1,8 +1,9 @@
 import React, {useCallback, useRef} from 'react';
-import {Table, Button, Typography, Row, Image} from 'antd';
+import {Table, Button, Typography, Row, Image, Divider, Form, Select} from 'antd';
 import Container from './styles';
 import {IScholarshipsResponse} from '../../providers/api';
 import ScholarshipDetails, {IScholarshipHandles} from '../scholarsipDetails';
+import { useForm } from 'antd/lib/form/Form';
 interface IScholarshipsTable {
   tableTitle: string;
   scholarshipData: IScholarshipsResponse[];
@@ -14,6 +15,7 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
   scholarshipData,
   containerStyle,
 }: IScholarshipsTable) => {
+  const [form] = Form.useForm();
   const scholarshipModalRef = useRef<IScholarshipHandles>(null);
 
   const handleDetailsModal = useCallback((data) => {
@@ -22,6 +24,10 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
       scholarshipModalRef.current.openModal();
     }
   }, []);
+
+  const handleFinish = () => {
+    console.log('testando')
+  }
 
   const columns = [
     {
@@ -79,6 +85,7 @@ const ScholarshipsTable: React.FC<IScholarshipsTable> = ({
 
   return (
     <>
+     <Divider/>
       <Row
         justify="space-around"
         align="middle"
