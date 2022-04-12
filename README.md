@@ -29,8 +29,7 @@ Install dependecies
  - npm install
 
 Configure you env
- - You will see a file named .env-example, just made a copy of this file and rename him to .env, at REACT_APP_APIROUTE= put the api URL.
- - set "https://testapi.io/api/Jonas-buriti"
+ - You will see a file named .env-example, just made a copy of this file and rename him to .env, at REACT_APP_APIROUTE= put the api URL. "https://testapi.io/api/Jonas-buriti"
 
 Then start the app
  - npm start
